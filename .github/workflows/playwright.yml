@@ -30,6 +30,9 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
 
+      - name: Install Allure CLI
+        run: npm install -g allure-commandline --save-dev
+
       - name: Generate Allure report
         run: npm run allure:generate
           
