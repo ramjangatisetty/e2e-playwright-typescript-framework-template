@@ -1,0 +1,45 @@
+# Node modules
+node_modules/
+
+# Output directories
+dist/
+build/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# Playwright specific
+test-results/
+playwright-report/
+.vscode/.playwright/
+
+# Allure reports
+allure-results/
+allure-report/
+
+# Coverage reports
+coverage/
+lcov-report/
+
+# Compiled TypeScript
+*.tsbuildinfo
+
+# IDE settings
+.vscode/
+.idea/
+
+# Mac system file
+Icon?
+.DS_STORE
