@@ -28,16 +28,10 @@ export class LoginPage extends BasePage {
         this.page = page;
     }
 
-    async login(username: string, password: string) {
-        await this.txtUserName.fill(username);
-        await this.txtPassword.fill(password);
-        const enabled = await this.btnLogin.isEnabled();
-        if (enabled){
-            await AllureHelper.stepCheck(`Login Button is Enabled`);
-        } else {
-            await AllureHelper.stepCheck('Login Button is not Enabled', 'passed', true)
-        }
-        await this.btnLogin.click();
+    async login(userName: string, password: string) {
+        await this.enterText(this.txtUserName, userName);
+        await this.enterText(this.txtPassword, password);
+        await this.clickElement(this.btnLogin);
     }
 
     

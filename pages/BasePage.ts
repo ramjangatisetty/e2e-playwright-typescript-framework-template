@@ -65,6 +65,7 @@ export class BasePage {
 
     async isElementVisible(locator: Locator): Promise<boolean> {
         try {
+            logger.info(`Verifying the visibility of locator: ${locator.toString()}`);
             return await locator.isVisible();
         } catch {
             return false;
