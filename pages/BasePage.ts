@@ -40,7 +40,8 @@ export class BasePage {
 
     async enterText(locator: Locator, value: string, wait: boolean = true): Promise<void> {
         if (wait) await this.waitForElement(locator);
-        await locator.fill(value);
+        const response = await locator.fill(value);
+        
         logger.info(`Filled input ${locator.toString()} with value: ${value}`);
     }
 
