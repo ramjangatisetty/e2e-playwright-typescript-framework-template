@@ -8,15 +8,15 @@ export class LoginPage extends BasePage {
     
 
     private get txtUserName(): Locator {
-        return this.page.locator('#user-name');
+        return this.page.getByRole('textbox', {name : 'Username'});
     }
 
     private get txtPassword(): Locator {
-        return this.page.locator('#password');
+        return this.page.getByRole('textbox', {name:'Password'});
     }
 
     private get btnLogin() : Locator {
-        return this.page.locator('#login-button');
+        return this.page.getByRole('button',{name : 'Login'});
     }
 
     async goto() {
@@ -29,7 +29,7 @@ export class LoginPage extends BasePage {
     }
 
     async login(userName: string, password: string) {
-        await this.enterText(this.txtUserName, userName);
+        const response = await this.enterText(this.txtUserName, userName);
         await this.enterText(this.txtPassword, password);
         await this.clickElement(this.btnLogin);
     }

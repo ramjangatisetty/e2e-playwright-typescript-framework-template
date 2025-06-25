@@ -7,7 +7,8 @@ export class HomePage extends BasePage{
     protected readonly page: Page;
 
     private txtProductLink(productName: string) :Locator {
-        return this.page.locator(`text="${productName}"`)
+        return this.page.locator(`text="${productName}"`);
+       
     }
 
 

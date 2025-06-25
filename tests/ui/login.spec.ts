@@ -11,8 +11,6 @@ test.describe.parallel('@smoke', () => {
   await loginPage.goto();
   await loginPage.login("standard_user", "secret_sauce");
   await homePage.verifyLoginIsSuccessful();
-
-  
   });
 
   test('Valid Login 2', async ({ page }) => {
@@ -21,7 +19,6 @@ test.describe.parallel('@smoke', () => {
   await loginPage.goto();
   await loginPage.login("standard_user", "secret_sauce");
   await homePage.verifyProductExists("Sauce Labs Backpack");
-  
   });
 
 })
