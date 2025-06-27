@@ -1,6 +1,6 @@
-FROM mcr.microsoft.com/playwright:v1.53.1-jammy
+FROM mcr.microsoft.com/playwright:v1.44.0-jammy
 
-# Install Java 11 (for Allure CLI or other needs)
+# Install Java 11 for Allure Reports
 RUN apt-get update && apt-get install -y wget gnupg2 && \
     wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor -o /usr/share/keyrings/adoptium.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb focal main" | tee /etc/apt/sources.list.d/adoptium.list && \
@@ -10,15 +10,11 @@ RUN apt-get update && apt-get install -y wget gnupg2 && \
 ENV JAVA_HOME=/usr/lib/jvm/temurin-11-jdk
 ENV PATH=$JAVA_HOME/bin:$PATH
 
-# Set workdir
+# Setup project directory and install dependencies
 WORKDIR /app
-
-# Copy package files and install dependencies
 COPY package*.json ./
-RUN npm install
-
-# Copy all source code
+RUN npm ci
 COPY . .
 
-# Run tests (optional if running in GitHub workflow instead)
-# CMD ["npx", "playwright", "test"]
+# Run tests by default if container is directly executed
+CMD ["npx", "playwright", "test"]
