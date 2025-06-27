@@ -16,9 +16,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     container:
-      image: mcr.microsoft.com/playwright:v1.53.1-jammy  # Official Playwright Docker image
+      image: ghcr.io/your-org/your-playwright-java-image:latest  # Replace with your built image
 
     steps:
       - name: Checkout repo
@@ -30,13 +29,10 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
 
-      - name: Install Allure CLI
-        run: npm install -g allure-commandline --save-dev
-
       - name: Generate Allure report
         run: npm run allure:generate
 
-      - name: Upload Allure Report as an Artifact
+      - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
