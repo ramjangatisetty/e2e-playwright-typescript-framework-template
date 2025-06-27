@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker image
-        run: docker build -t my-playwright-runner -f .github/docker/Dockerfile.playwright .
+        run: docker build -t my-playwright-runner -f Dockerfile.playwright .
 
       - name: Run Playwright tests in container
         run: |
