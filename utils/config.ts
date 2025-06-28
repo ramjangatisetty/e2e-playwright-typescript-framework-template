@@ -23,7 +23,7 @@ function assertEnvVar(name: string, value: string | undefined): string {
 }
 
 export const config: TestConfig = {
-  baseUrl: assertEnvVar('URL', process.env.BASE_URL),
+  baseUrl: assertEnvVar('BASE_URL', process.env.BASE_URL),
   username: assertEnvVar('USERNAME', process.env.USERNAME),
   password: assertEnvVar('PASSWORD', process.env.PASSWORD),
 };
