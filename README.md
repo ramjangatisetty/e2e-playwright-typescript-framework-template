@@ -13,6 +13,7 @@ Supports cross-browser testing, rich reporting with **Allure**, Dockerized execu
 - [Logger Utility](docs/logger.md)
 - [Allure Helper](docs/allureHelper.md)
 - [Playwright Config](docs/playwright-config.md)
+- [CICD](docs/CICD.md)
 
 ---
 
