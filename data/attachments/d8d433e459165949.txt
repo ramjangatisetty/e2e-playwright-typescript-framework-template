@@ -1,0 +1,15 @@
+[INFO] 2025-06-28T17:17:19.318Z - 🚀 Starting test: Valid Login 2
+[INFO] 2025-06-28T17:17:19.320Z - 🔖 Tags: None
+[INFO] 2025-06-28T17:17:19.869Z - Attempt 1: Waiting for element → getByRole('textbox', { name: 'Username' })
+[INFO] 2025-06-28T17:17:19.919Z - Element is ready: getByRole('textbox', { name: 'Username' })
+[INFO] 2025-06-28T17:17:19.937Z - Filled input getByRole('textbox', { name: 'Username' }) with value: standard_user
+[INFO] 2025-06-28T17:17:19.937Z - Attempt 1: Waiting for element → getByRole('textbox', { name: 'Password' })
+[INFO] 2025-06-28T17:17:19.945Z - Element is ready: getByRole('textbox', { name: 'Password' })
+[INFO] 2025-06-28T17:17:19.957Z - Filled input getByRole('textbox', { name: 'Password' }) with value: secret_sauce
+[INFO] 2025-06-28T17:17:19.957Z - Attempt 1: Waiting for element → getByRole('button', { name: 'Login' })
+[INFO] 2025-06-28T17:17:19.969Z - Element is ready: getByRole('button', { name: 'Login' })
+[INFO] 2025-06-28T17:17:20.072Z - Clicked on element: getByRole('button', { name: 'Login' })
+[INFO] 2025-06-28T17:17:20.072Z - Verifying the visibility of locator: locator('text="Sauce Labs Backpack"')
+[INFO] 2025-06-28T17:17:20.107Z - ✅ Test passed: Valid Login 2
+[INFO] 2025-06-28T17:17:20.108Z - 📊 Status: PASSED | Duration: 848ms
+[INFO] 2025-06-28T17:17:20.166Z - [INFO] Product With the Name Exists
