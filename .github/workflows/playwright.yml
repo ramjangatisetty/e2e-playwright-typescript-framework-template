@@ -48,13 +48,13 @@ jobs:
       - name: Run Playwright Tests in Docker
         run: |
           docker run --name temp-runner \
-            -e TAG="${{ env.TAG && format('--grep {0}', env.TAG) }}" \
+            -e TAG="--grep ${{ env.TAG }}" \
             -e TEST_ENV=${{ env.TEST_ENV }} \
             -e BROWSER=${{ env.BROWSER }} \
             -e WORKERS=${{ env.WORKERS }} \
             -e RETRIES=${{ env.RETRIES }} \
             my-playwright-runner \
-            npm run test:allure
+            /bin/bash -c "chmod +x ./run-with-params.sh && npm run test:allure"
 
       - name: Copy Allure report
         run: |
