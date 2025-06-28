@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
   "test": "npx playwright test",
-  "test:allure": "node -e \"require('child_process').execSync(`npx playwright test --project=${process.env.BROWSER} --workers=${process.env.WORKERS} --retries=${process.env.RETRIES} ${process.env.TAG || ''}`, { stdio: 'inherit' })\" && npm run allure:generate",
+  "test:allure": "npm run test:params && npm run allure:generate",
+  "test:params": "sh ./run-with-params.sh",
   "allure:generate": "allure generate ./allure-results --clean -o ./allure-report",
   "allure:open": "allure open ./allure-report"
-  },
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
