@@ -113,6 +113,15 @@ Add these to your `package.json`:
 
 ---
 
+# GitHub Pages
+
+![Playwright Tests](https://github.com/ramjangatisetty/e2e-playwright-typescript-framework-template/actions/workflows/playwright.yml/badge.svg)
+[![Allure Report](https://img.shields.io/badge/Allure-Report-blue)](https://ramjangatisetty.github.io/e2e-playwright-typescript-framework-template/)
+
+> 🚀 Automated Playwright tests with integrated Allure reporting and GitHub Pages hosting.
+
+---
+
 ## 🤝 Contributing
 
 1. Fork this repo
