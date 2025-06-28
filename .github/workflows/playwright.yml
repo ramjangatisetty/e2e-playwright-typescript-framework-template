@@ -5,13 +5,38 @@ on:
     branches: [main, qa, dev, feature/*]
   pull_request:
     branches: [main, qa, dev, feature/*]
-  workflow_dispatch: {}
+  workflow_dispatch: 
+    inputs:
+      tag:
+        description: 'Test tag to filter by (e.g., @smoke)'
+        required: false
+        default: ''
+      browser:
+        description: 'Browser to run tests on'
+        required: true
+        default: 'chromium'
+      workers:
+        description: 'Number of parallel workers'
+        required: false
+        default: '2'
+      retries:
+        description: 'Retry count'
+        required: false
+        default: '1'
+      test_env:
+        description: 'Test environment (qa1, dev, etc.)'
+        required: true
+        default: 'qa1'
 
 jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      TEST_ENV: qa1 
+      TAG: ${{ github.event.inputs.tag && format('--grep {0}', github.event.inputs.tag) || '' }}
+      TEST_ENV: ${{ github.event.inputs.test_env || 'qa1' }}
+      BROWSER: ${{ github.event.inputs.browser || 'chromium' }}
+      WORKERS: ${{ github.event.inputs.workers || '2' }}
+      RETRIES: ${{ github.event.inputs.retries || '1' }} 
 
     steps:
       - name: Checkout repo
@@ -23,7 +48,11 @@ jobs:
       - name: Run Playwright Tests in Docker
         run: |
           docker run --name temp-runner \
+            -e TAG="--grep ${TAG}" \
             -e TEST_ENV=${{ env.TEST_ENV }} \
+            -e BROWSER=${{ env.BROWSER }} \
+            -e WORKERS=${{ env.WORKERS }} \
+            -e RETRIES=${{ env.RETRIES }} \
             my-playwright-runner \
             npm run test:allure
 
