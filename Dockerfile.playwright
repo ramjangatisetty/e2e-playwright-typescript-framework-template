@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y wget gnupg2 && \
 # Debug step: List the contents of the JVM directory
 RUN ls -l /usr/lib/jvm/
 
-ENV JAVA_HOME=/usr/lib/jvm/temurin-11-jdk
+ENV JAVA_HOME=/usr/lib/jvm/temurin-11-jdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
 
 WORKDIR /app
