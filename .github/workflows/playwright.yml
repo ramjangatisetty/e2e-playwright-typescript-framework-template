@@ -17,10 +17,8 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t my-playwright-runner -f Dockerfile.playwright .
-
       - name: Run Playwright Tests in Docker
-        run: docker run --name temp-runner my-playwright-runner
-
+        run: docker run --name temp-runner my-playwright-runner npm run test:allure
       - name: Copy Allure report
         run: |
           docker cp temp-runner:/app/allure-report ./allure-report
