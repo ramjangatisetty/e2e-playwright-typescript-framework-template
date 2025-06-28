@@ -5,12 +5,12 @@ on:
     branches: [main, qa, dev, feature/*]
   pull_request:
     branches: [main, qa, dev, feature/*]
-  workflow_dispatch: 
+  workflow_dispatch:
     inputs:
       tag:
         description: 'Test tag to filter by (e.g., @smoke)'
         required: false
-        default: ''
+        default: 'smoke'
       browser:
         description: 'Browser to run tests on'
         required: true
@@ -32,11 +32,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      TAG: ${{ github.event.inputs.tag && format('--grep {0}', github.event.inputs.tag) || '' }}
-      TEST_ENV: ${{ github.event.inputs.test_env || 'qa1' }}
-      BROWSER: ${{ github.event.inputs.browser || 'chromium' }}
-      WORKERS: ${{ github.event.inputs.workers || '2' }}
-      RETRIES: ${{ github.event.inputs.retries || '1' }} 
+      TAG: ${{ github.event.inputs.tag }}
+      TEST_ENV: ${{ github.event.inputs.test_env }}
+      BROWSER: ${{ github.event.inputs.browser }}
+      WORKERS: ${{ github.event.inputs.workers }}
+      RETRIES: ${{ github.event.inputs.retries }}
 
     steps:
       - name: Checkout repo
@@ -48,7 +48,7 @@ jobs:
       - name: Run Playwright Tests in Docker
         run: |
           docker run --name temp-runner \
-            -e TAG="--grep ${TAG}" \
+            -e TAG="${{ env.TAG && format('--grep {0}', env.TAG) }}" \
             -e TEST_ENV=${{ env.TEST_ENV }} \
             -e BROWSER=${{ env.BROWSER }} \
             -e WORKERS=${{ env.WORKERS }} \
@@ -58,7 +58,8 @@ jobs:
 
       - name: Copy Allure report
         run: |
-          docker cp temp-runner:/app/allure-report ./allure-report
+          docker cp temp-runner:/app/allure-report ./allure-report || echo "No allure-report found"
+          docker cp temp-runner:/app/playwright-report/enriched-test-results.json ./playwright-report/enriched-test-results.json || echo "No enriched result found"
           docker rm temp-runner
 
       - name: Upload Allure report
@@ -66,6 +67,12 @@ jobs:
         with:
           name: allure-report
           path: ./allure-report
+
+      - name: Upload Enriched Test Result
+        uses: actions/upload-artifact@v4
+        with:
+          name: enriched-test-result
+          path: ./playwright-report/enriched-test-results.json
 
       - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
