@@ -1,6 +1,7 @@
 import {Page, Locator} from '@playwright/test'
 import { BasePage } from '../pages/BasePage'
 import { AllureHelper } from '../utils/allureHelper';
+import { config } from '../utils/config';
 
 export class LoginPage extends BasePage {
 
@@ -20,7 +21,7 @@ export class LoginPage extends BasePage {
     }
 
     async goto() {
-        await this.page.goto("https://saucedemo.com/")
+        await this.page.goto(config.url)
     }
 
     constructor(page: Page) {

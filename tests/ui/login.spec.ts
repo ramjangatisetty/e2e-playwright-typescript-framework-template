@@ -1,6 +1,7 @@
-import { test, expect } from '../setup';
+import { test, expect } from '../setup'
 import { LoginPage } from '../../pages/LoginPage'
 import { HomePage } from '../../pages/HomePage'
+import { config } from '../../utils/config';
 
 
 test.describe.parallel('@smoke', () => {
@@ -17,7 +18,7 @@ test.describe.parallel('@smoke', () => {
   const loginPage = new LoginPage(page);
   const homePage = new HomePage(page);
   await loginPage.goto();
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(config.username, config.password);
   await homePage.verifyProductExists("Sauce Labs Backpack");
   });
 

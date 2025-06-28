@@ -1,44 +1,82 @@
-name: Playwright Tests
+name: Playwright Tests in Docker
 
 on:
   push:
-    branches: 
-      - main
+    branches: [main, qa, dev, feature/*]
   pull_request:
-    branches:
-      - main
-  workflow_dispatch: {}
+    branches: [main, qa, dev, feature/*]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Test tag to filter by (e.g., @smoke)'
+        required: false
+        default: '@smoke'
+      browser:
+        description: 'Browser to run tests on'
+        required: true
+        default: 'chromium'
+      workers:
+        description: 'Number of parallel workers'
+        required: false
+        default: '2'
+      retries:
+        description: 'Retry count'
+        required: false
+        default: '1'
+      test_env:
+        description: 'Test environment (qa1, dev, etc.)'
+        required: true
+        default: 'qa1'
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag }}
+      TEST_ENV: ${{ github.event.inputs.test_env }}
+      BROWSER: ${{ github.event.inputs.browser }}
+      WORKERS: ${{ github.event.inputs.workers }}
+      RETRIES: ${{ github.event.inputs.retries }}
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Build Docker Image
+        run: docker build -t my-playwright-runner -f Dockerfile.playwright .
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Run Playwright Tests in Docker
+        run: |
+          docker run --name temp-runner \
+            -e TAG="--grep ${{ env.TAG }}" \
+            -e TEST_ENV=${{ env.TEST_ENV }} \
+            -e BROWSER=${{ env.BROWSER }} \
+            -e WORKERS=${{ env.WORKERS }} \
+            -e RETRIES=${{ env.RETRIES }} \
+            my-playwright-runner \
+            /bin/bash -c "chmod +x ./run-with-params.sh && npm run test:allure"
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+      - name: Copy Allure report
+        run: |
+          docker cp temp-runner:/app/allure-report ./allure-report || echo "No allure-report found"
+          docker cp temp-runner:/app/playwright-report/enriched-test-results.json ./playwright-report/enriched-test-results.json || echo "No enriched result found"
+          docker rm temp-runner
 
-      - name: Run Playwright tests
-        run: npx playwright test
-
-      - name: Install Allure CLI
-        run: npm install -g allure-commandline --save-dev
-
-      - name: Generate Allure report
-        run: npm run allure:generate
-          
-      - name: Upload Allure Report as an Artifact
+      - name: Upload Allure report
         uses: actions/upload-artifact@v4
-        with: 
+        with:
           name: allure-report
           path: ./allure-report
+
+      - name: Upload Enriched Test Result
+        uses: actions/upload-artifact@v4
+        with:
+          name: enriched-test-result
+          path: ./playwright-report/enriched-test-results.json
+
+      - name: Deploy Allure report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          publish_branch: gh-pages

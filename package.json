@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx playwright test",
+    "test:allure": "npm run test:params && npm run allure:generate",
+    "test:params": "sh ./run-with-params.sh",
     "allure:generate": "allure generate ./allure-results --clean -o ./allure-report",
     "allure:open": "allure open ./allure-report"
   },
@@ -15,10 +17,12 @@
   "devDependencies": {
     "@playwright/test": "^1.53.1",
     "allure-playwright": "^3.3.0",
+    "dotenv": "^17.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "dotenv-flow": "^4.1.0",
     "winston": "^3.17.0"
   }
 }

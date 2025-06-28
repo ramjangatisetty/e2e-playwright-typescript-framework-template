@@ -1,0 +1,258 @@
+{
+  "config": {
+    "configFile": "/Users/ramakrishnajangatisetty/workspace/ui-automation/e2e-playwright-typescript-framework-template/playwright.config.ts",
+    "rootDir": "/Users/ramakrishnajangatisetty/workspace/ui-automation/e2e-playwright-typescript-framework-template/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/Users/ramakrishnajangatisetty/workspace/ui-automation/e2e-playwright-typescript-framework-template/global/setup.ts",
+    "globalTeardown": "/Users/ramakrishnajangatisetty/workspace/ui-automation/e2e-playwright-typescript-framework-template/global/teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "/Users/ramakrishnajangatisetty/workspace/ui-automation/e2e-playwright-typescript-framework-template/node_modules/allure-playwright/dist/cjs/index.js",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/ramakrishnajangatisetty/workspace/ui-automation/e2e-playwright-typescript-framework-template/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Chromium",
+        "name": "Chromium",
+        "testDir": "/Users/ramakrishnajangatisetty/workspace/ui-automation/e2e-playwright-typescript-framework-template/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.53.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "ui/login.spec.ts",
+      "file": "ui/login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "@smoke",
+          "file": "ui/login.spec.ts",
+          "line": 7,
+          "column": 15,
+          "specs": [
+            {
+              "title": "Valid Login 1",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Chromium",
+                  "projectName": "Chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3158,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:51.153Z - 🚀 Starting test: Valid Login 1\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:51.154Z - 🔖 Tags: None\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.863Z - Attempt 1: Waiting for element → getByRole('textbox', { name: 'Username' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.879Z - Element is ready: getByRole('textbox', { name: 'Username' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.886Z - Filled input getByRole('textbox', { name: 'Username' }) with value: standard_user\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.886Z - Attempt 1: Waiting for element → getByRole('textbox', { name: 'Password' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.889Z - Element is ready: getByRole('textbox', { name: 'Password' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.924Z - Filled input getByRole('textbox', { name: 'Password' }) with value: secret_sauce\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.924Z - Attempt 1: Waiting for element → getByRole('button', { name: 'Login' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.926Z - Element is ready: getByRole('button', { name: 'Login' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.987Z - Clicked on element: getByRole('button', { name: 'Login' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.988Z - ✅ Test passed: Valid Login 1\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.988Z - 📊 Status: PASSED | Duration: 3102ms\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.996Z - [INFO] Login is Successful\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-28T14:45:50.532Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "25217b8bb4316ea872c4-fa3105f08da1619d3dd4",
+              "file": "ui/login.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Valid Login 2",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Chromium",
+                  "projectName": "Chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3114,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:51.193Z - 🚀 Starting test: Valid Login 2\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:51.194Z - 🔖 Tags: None\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.863Z - Attempt 1: Waiting for element → getByRole('textbox', { name: 'Username' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.879Z - Element is ready: getByRole('textbox', { name: 'Username' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.886Z - Filled input getByRole('textbox', { name: 'Username' }) with value: standard_user\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.886Z - Attempt 1: Waiting for element → getByRole('textbox', { name: 'Password' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.889Z - Element is ready: getByRole('textbox', { name: 'Password' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.924Z - Filled input getByRole('textbox', { name: 'Password' }) with value: secret_sauce\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.924Z - Attempt 1: Waiting for element → getByRole('button', { name: 'Login' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.926Z - Element is ready: getByRole('button', { name: 'Login' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.986Z - Clicked on element: getByRole('button', { name: 'Login' })\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.987Z - Verifying the visibility of locator: locator('text=\"Sauce Labs Backpack\"')\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.990Z - ✅ Test passed: Valid Login 2\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.990Z - 📊 Status: PASSED | Duration: 3061ms\n"
+                        },
+                        {
+                          "text": "[\u001b[32MINFO\u001b[39M] 2025-06-28T14:45:53.996Z - [INFO] Product With the Name Exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-28T14:45:50.532Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "25217b8bb4316ea872c4-71dbc4c529a534d8aaad",
+              "file": "ui/login.spec.ts",
+              "line": 17,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-06-28T14:45:50.285Z",
+    "duration": 3919.5879999999997,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
