@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y wget gnupg2 && \
     apt-get update && apt-get install -y temurin-11-jdk && \
     npm install -g allure-commandline --force && \
     rm -rf /var/lib/apt/lists/*
+# Debug step: List the contents of the JVM directory
+RUN ls -l /usr/lib/jvm/
 
 ENV JAVA_HOME=/usr/lib/jvm/temurin-11-jdk
 ENV PATH=$JAVA_HOME/bin:$PATH
