@@ -102,7 +102,7 @@ async function teardown() {
     summary,
     tests
   };
-
+  fs.mkdirSync(path.dirname(enrichedOutputFile), { recursive: true });
   fs.writeFileSync(enrichedOutputFile, JSON.stringify(enriched, null, 2));
   console.log(`✅ Enriched test result written to: ${enrichedOutputFile}`);
 }
