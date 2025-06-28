@@ -11,7 +11,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      TEST_ENV: qa1
+      TEST_ENV: qa1 
 
     steps:
       - name: Checkout repo
@@ -19,8 +19,14 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t my-playwright-runner -f Dockerfile.playwright .
+
       - name: Run Playwright Tests in Docker
-        run: docker run --name temp-runner my-playwright-runner npm run test:allure
+        run: |
+          docker run --name temp-runner \
+            -e TEST_ENV=${{ env.TEST_ENV }} \ 
+            my-playwright-runner \
+            npm run test:allure
+
       - name: Copy Allure report
         run: |
           docker cp temp-runner:/app/allure-report ./allure-report
@@ -31,7 +37,7 @@ jobs:
         with:
           name: allure-report
           path: ./allure-report
-      
+
       - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
