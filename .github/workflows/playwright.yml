@@ -10,7 +10,7 @@ on:
       tag:
         description: 'Test tag to filter by (e.g., @smoke)'
         required: false
-        default: 'smoke'
+        default: '@smoke'
       browser:
         description: 'Browser to run tests on'
         required: true
