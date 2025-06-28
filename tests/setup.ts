@@ -1,7 +1,6 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base, expect, type Page, type TestInfo } from '@playwright/test';
 import { logger } from '../utils/logger';
 
-// Extend base test to include global hooks
 base.beforeEach(async ({ page }, testInfo) => {
   logger.info(`🚀 Starting test: ${testInfo.title}`);
   logger.info(`🔖 Tags: ${testInfo.annotations.map(a => a.type).join(', ') || 'None'}`);

@@ -5,9 +5,13 @@
     "lib": ["ESNext", "DOM"],
     "outDir": "dist",
     "rootDir": ".",
+    "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+        "@testsetup": ["tests/testsetup.ts"]
+    }
   },
   "include": ["./**/*.ts"]
 }
