@@ -1,3 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","1121","Valid Login 1","Chromium","Sat Jun 28 17:17:19 GMT 2025","passed","Sat Jun 28 17:17:20 GMT 2025","@smoke","ui/login.spec.ts","",""
-"","1068","Valid Login 2","Chromium","Sat Jun 28 17:17:19 GMT 2025","passed","Sat Jun 28 17:17:20 GMT 2025","@smoke","ui/login.spec.ts","",""
+"","934","Valid Login 2","Chromium","Sat Jun 28 17:26:23 GMT 2025","passed","Sat Jun 28 17:26:24 GMT 2025","@smoke","ui/login.spec.ts","",""
+"","881","Valid Login 1","Chromium","Sat Jun 28 17:26:23 GMT 2025","passed","Sat Jun 28 17:26:24 GMT 2025","@smoke","ui/login.spec.ts","",""
