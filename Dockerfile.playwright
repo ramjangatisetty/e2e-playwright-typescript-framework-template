@@ -1,7 +1,7 @@
 # ---- Build Stage ----
 FROM mcr.microsoft.com/playwright:v1.53.1-jammy AS build
 
-# Install Java 11 (required for Allure)
+# Install Java 11 (for Allure)
 RUN apt-get update && apt-get install -y wget gnupg2 && \
     wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor -o /usr/share/keyrings/adoptium.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb focal main" | tee /etc/apt/sources.list.d/adoptium.list && \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y wget gnupg2 && \
 
 WORKDIR /app
 
-# Copy only package files first to cache layer
+# Copy package files first to leverage Docker caching
 COPY package*.json ./
 
 # Install Node dependencies
@@ -19,31 +19,30 @@ RUN npm ci
 # Copy environment files
 COPY env ./env
 
-# Copy the rest of the application
+# Copy the full application
 COPY . .
 
 # ---- Final Stage ----
 FROM mcr.microsoft.com/playwright:v1.53.1-jammy
 
-# Install Java 11 (required for Allure) in the final image
+# Install Java 11 and Allure CLI
 RUN apt-get update && apt-get install -y wget gnupg2 && \
     wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor -o /usr/share/keyrings/adoptium.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb focal main" | tee /etc/apt/sources.list.d/adoptium.list && \
     apt-get update && apt-get install -y temurin-11-jdk && \
+    npm install -g allure-commandline --force && \
     rm -rf /var/lib/apt/lists/*
-
-# Install Allure CLI globally in the final image
-RUN npm install -g allure-commandline --force
 
 ENV JAVA_HOME=/usr/lib/jvm/temurin-11-jdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
 
 WORKDIR /app
 
-# Copy node_modules and built app from build stage
+# Copy built assets and node_modules from the build stage
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/env ./env
 COPY --from=build /app/. .
 COPY --from=build /app/package*.json ./
 
+# Default CMD — runs Playwright tests and generates Allure report
 CMD ["npm", "run", "test:allure"]
