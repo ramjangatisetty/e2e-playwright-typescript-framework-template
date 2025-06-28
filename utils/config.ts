@@ -10,7 +10,7 @@ dotenvFlow.config({
 });
 
 interface TestConfig {
-  url: string;
+  baseUrl: string;
   username: string;
   password: string;
 }
@@ -23,7 +23,7 @@ function assertEnvVar(name: string, value: string | undefined): string {
 }
 
 export const config: TestConfig = {
-  url: assertEnvVar('URL', process.env.URL),
+  baseUrl: assertEnvVar('URL', process.env.BASE_URL),
   username: assertEnvVar('USERNAME', process.env.USERNAME),
   password: assertEnvVar('PASSWORD', process.env.PASSWORD),
 };

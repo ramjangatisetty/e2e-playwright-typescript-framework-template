@@ -1,5 +1,12 @@
 import { defineConfig } from '@playwright/test';
+import * as dotenvFlow from 'dotenv-flow';
 import path from 'path';
+
+// Load env variables before config is defined
+dotenvFlow.config({
+  path: path.resolve(__dirname, 'env'),
+  node_env: process.env.TEST_ENV || 'local'
+});
 
 export default defineConfig({
   testDir: './tests',

@@ -96,7 +96,20 @@ e2e-playwright-framework/
 ├── DockerFile.playwright # Dockerfile for CI/CD
 ├── .github/workflows/    # GitHub Actions workflows
 ```
+## 🌐 Overriding baseURL
 
+- By default, `baseURL` is loaded from your environment file (e.g., `env/.env.dev1`).
+- To override for a specific run, set the `BASE_URL` variable:
+
+```sh
+BASE_URL=https://another-url.com npm test
+```
+
+- Or use a different environment:
+
+```sh
+TEST_ENV=dev1 npm test
+```
 ---
 
 ## ✅ GitHub Actions CI/CD
@@ -147,6 +160,8 @@ This project uses **GitHub Actions** to automate test execution and reporting.
 3. Submit a PR after testing
 
 ---
+
+
 
 ## 📄 License
 
