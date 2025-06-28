@@ -23,7 +23,7 @@ jobs:
       - name: Run Playwright Tests in Docker
         run: |
           docker run --name temp-runner \
-            -e TEST_ENV=${{ env.TEST_ENV }} \ 
+            -e TEST_ENV=${{ env.TEST_ENV }} \
             my-playwright-runner \
             npm run test:allure
 
