@@ -1,16 +1,16 @@
-import * as dotenv from 'dotenv';
-import * as path from 'path';
+import * as dotenvFlow from 'dotenv-flow';
 
-// Determine the environment (default to 'local' if not provided)
 const envName = process.env.TEST_ENV || 'local';
 console.log("Environment Name is: " + envName);
 
-// Load the corresponding .env file from /env folder
-console.log(`../../env/.env.${envName}`);
-dotenv.config({ path: path.resolve(__dirname, `../env/.env.${envName}`) });
+// Load .env files using dotenv-flow
+dotenvFlow.config({
+  node_env: envName, // This will load .env.qa1, .env.dev, etc.
+  path: `${__dirname}/../env`
+});
 
 interface TestConfig {
-  url: string;
+  baseUrl: string;
   username: string;
   password: string;
 }
@@ -23,7 +23,7 @@ function assertEnvVar(name: string, value: string | undefined): string {
 }
 
 export const config: TestConfig = {
-  url: assertEnvVar('URL', process.env.URL),
+  baseUrl: assertEnvVar('BASE_URL', process.env.BASE_URL),
   username: assertEnvVar('USERNAME', process.env.USERNAME),
   password: assertEnvVar('PASSWORD', process.env.PASSWORD),
 };

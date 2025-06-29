@@ -21,7 +21,7 @@ export class LoginPage extends BasePage {
     }
 
     async goto() {
-        await this.page.goto(config.url)
+        await this.page.goto(config.baseUrl)
     }
 
     constructor(page: Page) {
