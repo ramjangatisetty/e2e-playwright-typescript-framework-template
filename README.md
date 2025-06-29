@@ -7,6 +7,7 @@ Supports cross-browser testing, rich reporting with **Allure**, Dockerized execu
 
 ## 📚 Documentation
 
+- [ARCHITECTURE](docs/ARCHITECTURE.md)
 - [BasePage](docs/BasePage.md)
 - [LoginPage](docs/LoginPage.md)
 - [HomePage](docs/HomePage.md)
