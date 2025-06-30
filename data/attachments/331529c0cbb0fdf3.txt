@@ -1,0 +1,12 @@
+[INFO] 2025-06-30T17:48:20.255Z - Attempt 1: Waiting for element → getByRole('textbox', { name: 'Username' })
+[INFO] 2025-06-30T17:48:20.342Z - Element is ready: getByRole('textbox', { name: 'Username' })
+[INFO] 2025-06-30T17:48:20.373Z - Filled input getByRole('textbox', { name: 'Username' }) with value: standard_user
+[INFO] 2025-06-30T17:48:20.374Z - Attempt 1: Waiting for element → getByRole('textbox', { name: 'Password' })
+[INFO] 2025-06-30T17:48:20.408Z - Element is ready: getByRole('textbox', { name: 'Password' })
+[INFO] 2025-06-30T17:48:20.457Z - Filled input getByRole('textbox', { name: 'Password' }) with value: secret_sauce
+[INFO] 2025-06-30T17:48:20.458Z - Attempt 1: Waiting for element → getByRole('button', { name: 'Login' })
+[INFO] 2025-06-30T17:48:20.481Z - Element is ready: getByRole('button', { name: 'Login' })
+[INFO] 2025-06-30T17:48:20.609Z - Clicked on element: getByRole('button', { name: 'Login' })
+[INFO] 2025-06-30T17:48:20.616Z - ✅ Test passed: Valid Login 1
+[INFO] 2025-06-30T17:48:20.617Z - 📊 Status: PASSED | Duration: 856ms
+[INFO] 2025-06-30T17:48:20.734Z - [INFO] Login is Successful
