@@ -30,6 +30,61 @@ Supports cross-browser testing, rich reporting with **Allure**, Dockerized execu
 - ✅ GitHub Pages publishing for Allure reports
 
 ---
+🐞 Debugging Playwright Tests in VS Code
+  You can debug your Playwright tests using VS Code's built-in debugger and the provided launch.json configuration.
+
+  Example launch.json configuration:
+
+  {
+    "type": "node",
+    "request": "launch",
+    "name": "Debug Playwright Test",
+    "program": "${workspaceFolder}/node_modules/@playwright/test/cli.js",
+    "args": [
+      "test",
+      "--headed",
+      "--project=chromium"
+    ],
+    "env": {
+      "TAG": "@smoke",
+      "BROWSER": "chromium",
+      "WORKERS": "1",
+      "RETRIES": "1",
+      "TEST_ENV": "qa1"
+    },
+    "console": "integratedTerminal",
+    "internalConsoleOptions": "openOnSessionStart"
+  }
+  How to Use
+    Open your project in VS Code.
+    Set breakpoints in your test or page files.
+    Go to the Run & Debug panel (left sidebar).
+    Select Debug Playwright Test from the dropdown.
+    Click the green play button (▶️) to start debugging.
+    The browser will open in headed mode, and you can step through your code, inspect variables, and use all VS Code debugging features.
+
+  You can customize the environment variables and arguments as needed for your test run.
+  For more details, see VS Code Debugging Documentation.
+
+🐞 Debugging Tests with Playwright Debugger
+  You can debug your Playwright tests using the built-in Playwright Inspector or VS Code debugger. The project provides a convenient script for running tests in debug mode with environment variables pre-set.
+
+  Using the Debug Script
+  To run tests in debug mode with your environment settings, use:
+    npm run test:env:debug -- [test-file-or-pattern] --debug
+    test:env:debug is the script defined under package.json file
+    This command sets the following variables:
+      TAG='@smoke' BROWSER='chromium' WORKERS=2 RETRIES=1 TEST_ENV='qa1'
+    The --debug flag opens the Playwright Inspector for interactive debugging.
+    Example
+      npm run test:env:debug -- tests/login.spec.ts --debug
+    What Happens
+    The script runs Playwright tests with your specified environment.
+    The Playwright Inspector UI will open, allowing you to step through your tests, inspect selectors, and interact with the browser.
+  Tips
+    You can pass any test file or pattern after -- to target specific tests.
+    Use breakpoints in your test code or add await page.pause() to pause execution at a specific point.
+    Add this section to your README.md to help contributors debug tests using your custom script and Playwright’s debugging tools. Let me know if you want this inserted automatically!
 
 ## 🧪 Running Tests Locally
 
@@ -85,33 +140,18 @@ docker run --rm -v $(pwd)/allure-report:/app/allure-report my-playwright-runner 
 
 ## 📂 Project Structure
 
-```
 e2e-playwright-framework/
-├── tests/                # Test specs
-├── pages/                # Page Object Models
-├── utils/                # Custom utilities
-├── storage/              # Session files
-├── allure-results/       # Allure raw data
-├── allure-report/        # Allure HTML reports
-├── playwright.config.ts  # Playwright test config
+├── tests/ # Test specs
+├── pages/ # Page Object Models
+├── utils/ # Custom utilities
+├── storage/ # Session files
+├── allure-results/ # Allure raw data
+├── allure-report/ # Allure HTML reports
+├── playwright.config.ts # Playwright test config
 ├── DockerFile.playwright # Dockerfile for CI/CD
-├── .github/workflows/    # GitHub Actions workflows
-```
-## 🌐 Overriding baseURL
+├── .github/workflows/ # GitHub Actions workflows
 
-- By default, `baseURL` is loaded from your environment file (e.g., `env/.env.dev1`).
-- To override for a specific run, set the `BASE_URL` variable:
 
-```sh
-BASE_URL=https://another-url.com npm test
-```
-
-- Or use a different environment:
-
-```sh
-TEST_ENV=dev1 npm test
-```
----
 
 ## ✅ GitHub Actions CI/CD
 
@@ -125,7 +165,6 @@ This project uses **GitHub Actions** to automate test execution and reporting.
 
 ### 📁 Workflow Location
 
-```
 .github/workflows/playwright.yml
 ```
 
@@ -163,8 +202,6 @@ This project uses **GitHub Actions** to automate test execution and reporting.
 ---
 
 TEST_ENV=qa1 npx playwright test
-
-
 
 ## 📄 License
 
