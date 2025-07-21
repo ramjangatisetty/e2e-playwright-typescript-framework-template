@@ -34,7 +34,8 @@ Supports cross-browser testing, rich reporting with **Allure**, Dockerized execu
   You can debug your Playwright tests using VS Code's built-in debugger and the provided launch.json configuration.
 
   Example launch.json configuration:
-
+  
+  ```json
   {
     "type": "node",
     "request": "launch",
@@ -55,6 +56,8 @@ Supports cross-browser testing, rich reporting with **Allure**, Dockerized execu
     "console": "integratedTerminal",
     "internalConsoleOptions": "openOnSessionStart"
   }
+  ```
+
   How to Use
     Open your project in VS Code.
     Set breakpoints in your test or page files.
