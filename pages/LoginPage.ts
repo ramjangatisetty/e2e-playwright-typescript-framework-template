@@ -1,6 +1,5 @@
 import {Page, Locator} from '@playwright/test'
 import { BasePage } from '../pages/BasePage'
-import { AllureHelper } from '../utils/allureHelper';
 import { config } from '../utils/config';
 
 export class LoginPage extends BasePage {
@@ -30,7 +29,7 @@ export class LoginPage extends BasePage {
     }
 
     async login(userName: string, password: string) {
-        const response = await this.enterText(this.txtUserName, userName);
+        await this.enterText(this.txtUserName, userName);
         await this.enterText(this.txtPassword, password);
         await this.clickElement(this.btnLogin);
     }

@@ -162,6 +162,8 @@ This project uses **GitHub Actions** to automate test execution and reporting.
 
 ---
 
+TEST_ENV=qa1 npx playwright test
+
 
 
 ## 📄 License

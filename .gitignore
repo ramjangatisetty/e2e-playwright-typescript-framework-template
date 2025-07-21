@@ -1,6 +1,10 @@
 # Node modules
 node_modules/
 
+#custom json report
+global/test-run-context.json
+
+
 # Output directories
 dist/
 build/
@@ -34,7 +38,6 @@ lcov-report/
 *.tsbuildinfo
 
 # IDE settings
-.vscode/
 .idea/
 
 # Mac system file
