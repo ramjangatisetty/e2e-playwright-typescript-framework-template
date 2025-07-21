@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Playwright Test",
+      "program": "${workspaceFolder}/node_modules/@playwright/test/cli.js",
+      "args": [
+        "test",
+        "--headed",
+        "--project=chromium"
+      ],
+      "env": {
+        "TAG": "@smoke",
+        "BROWSER": "chromium",
+        "WORKERS": "1",
+        "RETRIES": "1",
+        "TEST_ENV": "qa1"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}

@@ -8,7 +8,9 @@
     "test:allure": "npm run test:params && npm run allure:generate",
     "test:params": "sh ./run-with-params.sh",
     "allure:generate": "allure generate ./allure-results --clean -o ./allure-report",
-    "allure:open": "allure open ./allure-report"
+    "allure:open": "allure open ./allure-report",
+    "test:env": "TAG='@smoke' BROWSER='chromium' WORKERS=2 RETRIES=1 TEST_ENV='qa1' npm run test:allure",
+    "test:env:debug":"TAG='@smoke' BROWSER='chromium' WORKERS=2 RETRIES=1 TEST_ENV='qa1' npx playwright test $@"
   },
   "keywords": [],
   "author": "",
