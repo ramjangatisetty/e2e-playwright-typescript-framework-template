@@ -34,6 +34,12 @@ export class LoginPage extends BasePage {
         await this.clickElement(this.btnLogin);
     }
 
+    async loginWithUsername(userName: string) {
+        await this.enterText(this.txtUserName, userName);
+       
+        await this.clickElement(this.btnLogin);
+    }
+
     
 
 }
